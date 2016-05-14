@@ -47,6 +47,23 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
+    func datePickerValueChanged(sender:UIDatePicker) -> Void {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .NoStyle
+        dateTF.text = dateFormatter.stringFromDate(sender.date)
+    }
+    
+    @IBAction func textFieldEditing(sender: UITextField) {
+        
+        let datePicker:UIDatePicker = UIDatePicker()
+        datePicker.datePickerMode = .Date
+        sender.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), forControlEvents: .ValueChanged)
+    }
+
+    
     //MARK: - UITextViewDelegate
 
     //MARK: - Pivate

@@ -8,38 +8,57 @@
 
 import UIKit
 
-class ListViewController: UIViewController, EditYummyDelegate{
+class ListViewController: UIViewController, EditYummyDelegate, UITableViewDelegate, UITableViewDataSource{
 
     var changeTimer:NSTimer? = nil
     var imageName:String = "af-"
     var imageNumber:NSInteger = 0
-    var yummyDic:Dictionary? = [String: String]()
-    var recordTableViewController:RecordTableViewController?
+    var yummyDic:Dictionary? = [String: String!]()
+    var yummyArray:NSMutableArray = []
     
-    
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RecordTableViewController") as! RecordTableViewController
-        recordTableViewController?.tableView.reloadData()
         changeTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(imageNameChange), userInfo: nil, repeats: true)
         self.setupNavigationBar()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - tableViewDelegate
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return yummyArray.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        yummyDic = yummyArray[indexPath.row] as? Dictionary<String, String!>
+        cell.textLabel?.text = yummyDic!["title"]
+        cell.detailTextLabel?.text = yummyDic!["date"]
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let  viewController  = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        viewController.detailInfo = yummyArray[indexPath.row] as? Dictionary<String, String!>
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     //MARK: - EditYummyDelegate
     func didEditYummy(dic: Dictionary<String, String!>) {
 
-        recordTableViewController?.diaryArray?.addObject(dic)
-        recordTableViewController?.reloadTableInfo()
+        yummyArray.addObject(dic)
+        self.tableView.reloadData()
     }
 
     //MARK: - Private
