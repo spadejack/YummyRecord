@@ -12,7 +12,7 @@ protocol EditYummyDelegate:class {
     func didEditYummy(dic:Dictionary<String, String!>) -> Void
 }
 
-class EditRecordViewController: UIViewController {
+class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     var dic:Dictionary = [String: String!]()
     var delegate:EditYummyDelegate?
@@ -31,8 +31,25 @@ class EditRecordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+        case 100:
+            dateTF.becomeFirstResponder()
+            print("\(textField.tag)")
+        case 101:
+            introTextView.becomeFirstResponder()
+            print("\(textField.tag)")
+        default:
+            break
+        }
+        return true
+    }
     
-    //MARK: - Pivate 
+    //MARK: - UITextViewDelegate
+
+    //MARK: - Pivate
     func setupNavigation() -> Void {
         
         let doneButton = UIBarButtonItem.init(title: "Done", style: .Done, target: self, action: #selector(doneClick))

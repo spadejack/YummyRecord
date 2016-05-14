@@ -39,7 +39,6 @@ class RecordTableViewController: UITableViewController {
         }
     }
     
-    //MARK: - Table view delegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("CELL", forIndexPath: indexPath)
