@@ -52,6 +52,14 @@ class RecordTableViewController: UITableViewController {
         
         let  viewController  = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
     }
+    
+    //MARK: - Public
+    internal func reloadTableInfo() -> Void {
+        
+        self.tableView.reloadData()
+    }
+    
+
 
 }
 

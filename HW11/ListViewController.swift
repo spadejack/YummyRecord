@@ -39,7 +39,7 @@ class ListViewController: UIViewController, EditYummyDelegate{
     func didEditYummy(dic: Dictionary<String, String!>) {
 
         recordTableViewController?.diaryArray?.addObject(dic)
-        recordTableViewController?.tableView.reloadData()
+        recordTableViewController?.reloadTableInfo()
     }
 
     //MARK: - Private
