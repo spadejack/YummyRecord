@@ -235,7 +235,7 @@
         <!--Detail View Controller-->
         <scene sceneID="ssO-hh-Qsh">
             <objects>
-                <viewController id="IyH-ne-0cA" customClass="DetailViewController" customModule="HW11" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IyH-ne-0cA" customClass="DetailViewController" customModule="HW11" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nA1-Ka-ngW"/>
                         <viewControllerLayoutGuide type="bottom" id="ayn-2o-npd"/>
@@ -243,9 +243,47 @@
                     <view key="view" contentMode="scaleToFill" id="f7x-iM-GYM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGf-v3-gR3">
+                                <rect key="frame" x="16" y="83" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4O-xb-FbI">
+                                <rect key="frame" x="16" y="134" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DP-X2-D6f">
+                                <rect key="frame" x="12" y="180" width="296" height="368"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H4O-xb-FbI" firstAttribute="leading" secondItem="CGf-v3-gR3" secondAttribute="leading" id="0zc-Pe-hie"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CGf-v3-gR3" secondAttribute="trailing" id="3xg-Ex-BKd"/>
+                            <constraint firstItem="CGf-v3-gR3" firstAttribute="leading" secondItem="f7x-iM-GYM" secondAttribute="leadingMargin" id="86n-Ke-I51"/>
+                            <constraint firstItem="5DP-X2-D6f" firstAttribute="leading" secondItem="f7x-iM-GYM" secondAttribute="leadingMargin" constant="-4" id="9jA-GV-d0d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5DP-X2-D6f" secondAttribute="trailing" constant="-4" id="EhW-Fp-99z"/>
+                            <constraint firstItem="CGf-v3-gR3" firstAttribute="top" secondItem="nA1-Ka-ngW" secondAttribute="bottom" constant="63" id="X1E-su-GkD"/>
+                            <constraint firstItem="ayn-2o-npd" firstAttribute="top" secondItem="5DP-X2-D6f" secondAttribute="bottom" constant="20" id="dam-7g-C3K"/>
+                            <constraint firstItem="H4O-xb-FbI" firstAttribute="top" secondItem="CGf-v3-gR3" secondAttribute="bottom" constant="30" id="gTw-fp-x0g"/>
+                            <constraint firstItem="5DP-X2-D6f" firstAttribute="top" secondItem="H4O-xb-FbI" secondAttribute="bottom" constant="25" id="tud-DT-l6q"/>
+                            <constraint firstItem="H4O-xb-FbI" firstAttribute="trailing" secondItem="CGf-v3-gR3" secondAttribute="trailing" id="wdZ-Co-a6E"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="H4O-xb-FbI" id="A2o-2N-8g8"/>
+                        <outlet property="introTextView" destination="5DP-X2-D6f" id="o1W-Oc-u06"/>
+                        <outlet property="titleLabel" destination="CGf-v3-gR3" id="KQr-jr-jBF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71d-tC-OYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

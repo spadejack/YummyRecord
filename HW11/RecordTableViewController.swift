@@ -46,6 +46,15 @@ class RecordTableViewController: UITableViewController {
         
         return cell
     }
+
+    //MARK: - Table view Delegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+
 }
 
 
