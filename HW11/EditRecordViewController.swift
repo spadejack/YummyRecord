@@ -59,11 +59,8 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
     func doneClick() -> Void {
         let dicTemp = ["title":titleTF!.text ,"date": dateTF!.text, "intro": introTextView!.text]
         dic = dicTemp
-        //self.delegate?.didEditYummy(dic)
-        //self.navigationController?.popViewControllerAnimated(true)
-        let  viewController  = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-        viewController.detailInfo = dic
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.delegate?.didEditYummy(dic)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 
