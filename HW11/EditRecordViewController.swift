@@ -8,24 +8,29 @@
 
 import UIKit
 
-protocol EditYummyDelegate:class {
-    func didEditYummy(dic:Dictionary<String, String!>) -> Void
-}
-
 class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
-    var dic:Dictionary = [String: String!]()
-    var delegate:EditYummyDelegate?
+    var dic:Dictionary? = [String: String!]()
     
-    @IBOutlet weak var titleTF: UITextField!
-    @IBOutlet weak var dateTF: UITextField!
-    @IBOutlet weak var introTextView: UITextView!
+    @IBOutlet weak var titleTF: UITextField?
+    @IBOutlet weak var dateTF: UITextField?
+    @IBOutlet weak var introTextView: UITextView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigation()
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let detailDic = dic {
+            self.titleTF?.text = detailDic["title"]
+            self.dateTF?.text = detailDic["date"]
+            self.introTextView?.text = detailDic["intro"]
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,10 +41,10 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
         
         switch textField.tag {
         case 100:
-            dateTF.becomeFirstResponder()
+            dateTF!.becomeFirstResponder()
             print("\(textField.tag)")
         case 101:
-            introTextView.becomeFirstResponder()
+            introTextView!.becomeFirstResponder()
             print("\(textField.tag)")
         default:
             break
@@ -52,7 +57,7 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .MediumStyle
         dateFormatter.timeStyle = .NoStyle
-        dateTF.text = dateFormatter.stringFromDate(sender.date)
+        dateTF!.text = dateFormatter.stringFromDate(sender.date)
     }
     
     @IBAction func textFieldEditing(sender: UITextField) {
@@ -60,9 +65,12 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
         let datePicker:UIDatePicker = UIDatePicker()
         datePicker.datePickerMode = .Date
         sender.inputView = datePicker
+        let dateFormat = NSDateFormatter()
+        dateFormat.dateStyle = .MediumStyle
+        dateFormat.timeStyle = .NoStyle
+        dateTF?.text = dateFormat.stringFromDate(datePicker.date)
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), forControlEvents: .ValueChanged)
     }
-
     
     //MARK: - UITextViewDelegate
 
@@ -76,8 +84,8 @@ class EditRecordViewController: UIViewController, UITextFieldDelegate, UITextVie
     func doneClick() -> Void {
         let dicTemp = ["title":titleTF!.text ,"date": dateTF!.text, "intro": introTextView!.text]
         dic = dicTemp
-        self.delegate?.didEditYummy(dic)
-        self.navigationController?.popViewControllerAnimated(true)
+        NSNotificationCenter.defaultCenter().postNotificationName("NotiDic", object: nil, userInfo: dic)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 }
 

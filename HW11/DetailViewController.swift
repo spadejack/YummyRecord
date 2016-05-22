@@ -18,6 +18,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
+        self.setupTextViewAttri()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -31,4 +33,35 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - Private Methods
+    private func setupNavigationBar() -> Void {
+        
+        let editBarButton = UIBarButtonItem.init(title: "Edit", style: .Plain, target: self, action: #selector(goEditView))
+        self.navigationItem.rightBarButtonItem = editBarButton
+    }
+
+    func setupTextViewAttri() -> Void {
+        self.introTextView.textColor = UIColor.orangeColor()
+    }
+    
+    func goEditView(index:NSIndexPath) -> Void {
+        
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditRecordViewController") as! EditRecordViewController
+        viewController.dic = detailInfo!
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

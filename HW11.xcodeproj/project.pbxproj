@@ -16,6 +16,8 @@
 		3AAC9C1F1CE7408C0066FFB3 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC9C1E1CE7408C0066FFB3 /* RecordTableViewController.swift */; };
 		3AAC9C211CE741010066FFB3 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC9C201CE741010066FFB3 /* EditRecordViewController.swift */; };
 		3AAC9C231CE78EB00066FFB3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC9C221CE78EB00066FFB3 /* DetailViewController.swift */; };
+		3AFE50F51CF1BBF9000B8AD0 /* StatusSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE50F41CF1BBF9000B8AD0 /* StatusSingleton.swift */; };
+		3AFE50F71CF1DC6B000B8AD0 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE50F61CF1DC6B000B8AD0 /* EnumCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		3AAC9C1E1CE7408C0066FFB3 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		3AAC9C201CE741010066FFB3 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
 		3AAC9C221CE78EB00066FFB3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3AFE50F41CF1BBF9000B8AD0 /* StatusSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusSingleton.swift; sourceTree = "<group>"; };
+		3AFE50F61CF1DC6B000B8AD0 /* EnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				3AAC9C1E1CE7408C0066FFB3 /* RecordTableViewController.swift */,
 				3AAC9C201CE741010066FFB3 /* EditRecordViewController.swift */,
 				3AAC9C221CE78EB00066FFB3 /* DetailViewController.swift */,
+				3AFE50F41CF1BBF9000B8AD0 /* StatusSingleton.swift */,
+				3AFE50F61CF1DC6B000B8AD0 /* EnumCollection.swift */,
 				3AAC9C001CE739BD0066FFB3 /* Main.storyboard */,
 				3AAC9C031CE739BD0066FFB3 /* Assets.xcassets */,
 				3AAC9C051CE739BD0066FFB3 /* LaunchScreen.storyboard */,
@@ -210,7 +216,9 @@
 				3AAC9C211CE741010066FFB3 /* EditRecordViewController.swift in Sources */,
 				3AAC9C231CE78EB00066FFB3 /* DetailViewController.swift in Sources */,
 				3AAC9C1F1CE7408C0066FFB3 /* RecordTableViewController.swift in Sources */,
+				3AFE50F71CF1DC6B000B8AD0 /* EnumCollection.swift in Sources */,
 				3AAC9BFD1CE739BD0066FFB3 /* AppDelegate.swift in Sources */,
+				3AFE50F51CF1BBF9000B8AD0 /* StatusSingleton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +408,7 @@
 				3AAC9C181CE739BD0066FFB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AAC9C191CE739BD0066FFB3 /* Build configuration list for PBXNativeTarget "HW11UITests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +417,7 @@
 				3AAC9C1B1CE739BD0066FFB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

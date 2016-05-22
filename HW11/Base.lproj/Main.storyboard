@@ -231,9 +231,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zw-WT-nSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="739" y="214"/>
+            <point key="canvasLocation" x="341" y="214"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Title-->
         <scene sceneID="ssO-hh-Qsh">
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IyH-ne-0cA" customClass="DetailViewController" customModule="HW11" customModuleProvider="target" sceneMemberID="viewController">
@@ -261,8 +261,8 @@
                                 <rect key="frame" x="12" y="180" width="296" height="368"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -280,6 +280,7 @@
                             <constraint firstItem="H4O-xb-FbI" firstAttribute="trailing" secondItem="CGf-v3-gR3" secondAttribute="trailing" id="wdZ-Co-a6E"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="V3Y-q8-Wsp"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="dateLabel" destination="H4O-xb-FbI" id="A2o-2N-8g8"/>
@@ -289,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71d-tC-OYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="214"/>
+            <point key="canvasLocation" x="770" y="214"/>
         </scene>
     </scenes>
     <resources>

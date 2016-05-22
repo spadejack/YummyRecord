@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, EditYummyDelegate, UITableViewDelegate, UITableViewDataSource{
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     var changeTimer:NSTimer? = nil
     var imageName:String = "af-"
@@ -24,11 +24,12 @@ class ListViewController: UIViewController, EditYummyDelegate, UITableViewDelega
         
         changeTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(imageNameChange), userInfo: nil, repeats: true)
         self.setupNavigationBar()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didEditYummy), name: "NotiDic", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,13 +53,34 @@ class ListViewController: UIViewController, EditYummyDelegate, UITableViewDelega
         
         let  viewController  = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         viewController.detailInfo = yummyArray[indexPath.row] as? Dictionary<String, String!>
+        StatusSingleton.sharedInstance.setupCurrentEditType(.cellType)
+        StatusSingleton.sharedInstance.setupSelectRow(indexPath.row)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            self.yummyArray.removeObjectAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
     //MARK: - EditYummyDelegate
-    func didEditYummy(dic: Dictionary<String, String!>) {
+    func didEditYummy(noti:NSNotification) {
+        let dic = noti.userInfo
 
-        yummyArray.addObject(dic)
-        self.tableView.reloadData()
+        if StatusSingleton.sharedInstance.currentEditType() == .cellType{
+            
+            let selectedRow = StatusSingleton.sharedInstance.currentSelectRow()
+            yummyArray.removeObjectAtIndex(selectedRow)
+            yummyArray.insertObject(dic!, atIndex: selectedRow)
+            self.tableView.reloadData()
+        }else{
+            yummyArray.insertObject(dic!, atIndex: 0)
+            let indexPath = NSIndexPath.init(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
 
     //MARK: - Private
@@ -84,8 +106,8 @@ class ListViewController: UIViewController, EditYummyDelegate, UITableViewDelega
     }
     
     func goEditView() -> Void {
+        StatusSingleton.sharedInstance.setupCurrentEditType(.addType)
         let viewController = storyboard?.instantiateViewControllerWithIdentifier("EditRecordViewController") as! EditRecordViewController
-        viewController.delegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
