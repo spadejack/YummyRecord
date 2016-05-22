@@ -24,6 +24,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         changeTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(imageNameChange), userInfo: nil, repeats: true)
         self.setupNavigationBar()
+        self.initialSaveFile()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didEditYummy), name: "NotiDic", object: nil)
     }
     
@@ -63,6 +64,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .Delete {
             self.yummyArray.removeObjectAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            self.saveToFile()
         }
     }
     
@@ -81,6 +83,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             let indexPath = NSIndexPath.init(forRow: 0, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+        self.saveToFile()
     }
 
     //MARK: - Private
@@ -116,6 +119,29 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         let viewController = storyboard?.instantiateViewControllerWithIdentifier("RecordTableViewController") as! RecordTableViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    func initialSaveFile() -> Void {
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths.first
+        
+        let path = (documentsDirectory! as NSString).stringByAppendingPathComponent("yummy.txt")
+        
+        let array = NSArray(contentsOfFile: path)
+        
+        if let array = array {
+            self.yummyArray = NSMutableArray(array: array)
+        }
+    }
+    
+    func saveToFile() -> Void {
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentDirectory = paths.first
+        let path = (documentDirectory! as NSString).stringByAppendingPathComponent("yummy.txt")
+        
+        (self.yummyArray as NSArray).writeToFile(path, atomically: true)
     }
 }
 
